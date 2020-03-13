@@ -6,136 +6,24 @@ import 'materialize-css/dist/css/materialize.css';
 
 export default class Example extends Component {
   onSwipe(data) {
-    console.log(data.name + ' was swiped.');
+    console.log(data.email + ' was swiped.');
   }
   onSwipeLeft(data) {
     console.log('I was swiped left.');
   }
+  onSwipeRight() {
+    const me = this.props.me;
+    const userToUpdate = this.props.users.filter(user => {
+      user.id === me.id;
+    });
+    console.log('meId', me.id, 'userToUp', userToUpdate);
+  }
   renderCards() {
-    let data = [
-      {
-        id: 1,
-        email: 'climber1@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['trad'],
-        preferredGrades: ['5.8'],
-        zipCode: 12561,
-        phoneNumber: '3472441139',
-        bio: "I don't care how hard you climb as long as you bring snacks",
-        img: 'trad_dad.jpeg',
-        gear: 'rack',
-        matches: []
-      },
-      {
-        id: 2,
-        email: 'climber2@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['bouldering'],
-        preferredGrades: ['v16'],
-        zipCode: 12525,
-        phoneNumber: '1234567890',
-        bio: 'Looking for someone to project hard shi*t with!',
-        img: 'guy1.jpeg',
-        gear: 'rope',
-        matches: []
-      },
-      {
-        id: 3,
-        email: 'climber3@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['sport'],
-        preferredGrades: ['5.10'],
-        zipCode: 12525,
-        phoneNumber: '1234567890',
-        bio: 'What are your favorite sport climbs in the gunks?',
-        img: 'guy2.jpeg',
-        gear: 'brought the stoke!!!',
-        matches: []
-      },
-      {
-        id: 4,
-        email: 'climber4@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['sport'],
-        preferredGrades: ['5.6'],
-        zipCode: 12572,
-        phoneNumber: '1234567890',
-        bio: 'What are your favorite sport climbs in the gunks?',
-        img: 'guy3.png',
-        gear: '80m rope',
-        matches: []
-      },
-      {
-        id: 5,
-        email: 'climber4@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['sport'],
-        preferredGrades: ['5.6'],
-        zipCode: 12572,
-        phoneNumber: '1234567890',
-        bio: 'What are your favorite sport climbs in the gunks?',
-        img: 'girl3.png',
-        gear: '80m rope',
-        matches: []
-      },
-      {
-        id: 6,
-        email: 'climber5@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['sport'],
-        preferredGrades: ['5.6'],
-        zipCode: 12572,
-        phoneNumber: '1234567890',
-        bio: 'Hoping to learn how to lead. Safe belayer',
-        img: 'indoorWallClimber.png',
-        gear: 'triple rack',
-        matches: []
-      },
-      {
-        id: 7,
-        email: 'climber4@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['sport'],
-        preferredGrades: ['5.6'],
-        zipCode: 12572,
-        phoneNumber: '1234567890',
-        bio: 'Hoping to learn how to lead. Safe belayer',
-        img: 'girl1.jpeg',
-        gear: 'triple rack',
-        matches: []
-      },
-      {
-        id: 8,
-        email: 'climber6@gmail.com',
-        password: 'climb',
-        salt: '',
-        googleId: '',
-        climbingStyles: ['sport'],
-        preferredGrades: ['5.6'],
-        zipCode: 12572,
-        phoneNumber: '1234567890',
-        bio: 'Hoping to learn how to lead. Safe belayer',
-        img: 'girl2.jpeg',
-        gear: 'triple rack',
-        matches: []
-      }
-    ];
-
-    return data.map(d => {
+    console.log('props in Cards', this.props);
+    const data = this.props.users;
+    const me = this.props.me;
+    console.log('data in Cards', data);
+    return this.props.users.map(d => {
       const btns = {
         display: 'flex',
         justifyContent: 'space-between',
@@ -170,31 +58,52 @@ export default class Example extends Component {
         justifyContent: 'center',
         alignItems: 'center'
       };
+      const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 3
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
+        }
+      };
       return (
         <Card
+          responsive={responsive}
           key={d.id}
           style={cardStyle}
           onSwipe={this.onSwipe.bind(this)}
           onSwipeLeft={this.onSwipeLeft.bind(this)}
-          data={d}
+          onSwipeRight={this.onSwipeRight.bind(this)}
+          // data={d}
         >
           {d.name}
           <img style={cardImage} src={d.img} alt="" />
           <div style={btns}>
-            <a
-              style={{ color: 'teal' }}
-              className="btn-floating  waves-effect waves-teal"
+            <button
+              type="button"
+              onClick={() => console.log('onClick')}
+              className="btn-floating waves-effect waves-light orange"
             >
-              <i onClick={console.log('No!')} className="material-icons">
-                clear
-              </i>
-            </a>
-            <a
-              onClick={console.log('Yes!')}
-              className="btn-floating  waves-effect waves-teal"
+              <i className="material-icons">remove</i>
+            </button>
+            <button
+              type="button"
+              onClick={() => this.onSwipeRight(d.id)}
+              className="btn-floating waves-effect waves-light orange"
             >
               <i className="material-icons">add</i>
-            </a>
+            </button>
           </div>
           <div>
             <p>

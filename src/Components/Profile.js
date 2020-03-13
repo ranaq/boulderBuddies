@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import Geo from './Geo';
+import FindMe from './FindMe';
 export class Profile extends Component {
   state = {
     users: [
@@ -39,7 +40,12 @@ export class Profile extends Component {
     ]
   };
   render() {
-    return <div>Profile page!</div>;
+    return (
+      <div>
+        Profile page!
+        <FindMe />
+      </div>
+    );
   }
 }
 
