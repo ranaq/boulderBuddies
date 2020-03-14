@@ -152,6 +152,7 @@ export class App extends Component {
       coords: {}
     }
   };
+
   render() {
     return (
       <Router>
@@ -170,7 +171,13 @@ export class App extends Component {
               <NavLink to="/">Home</NavLink>
             </li>
           </Dropdown>
-          <Route exact path="/matches" component={Matches} />
+          <Route
+            exact
+            path="/matches"
+            render={() => {
+              return <Matches me={this.state.me} />;
+            }}
+          />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/home" component={Home} />
 
@@ -178,7 +185,13 @@ export class App extends Component {
             exact
             path="/"
             render={() => {
-              return <Cards users={this.state.users} me={this.state.me} />;
+              return (
+                <Cards
+                  users={this.state.users}
+                  me={this.state.me}
+                  // onSwipeRight={this.onSwipeRight}
+                />
+              );
             }}
           />
         </Container>

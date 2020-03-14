@@ -1,53 +1,46 @@
 import { Card, CardWrapper } from 'react-swipeable-cards';
 import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
+import './Cards.css';
+import Matches from './Matches';
 
-export default class Example extends Component {
-  onSwipe(data) {
-    console.log(data.email + ' was swiped.');
+export default class Cards extends Component {
+  onSwipeRight(data) {
+    this.props.users.forEach(user => {
+      if (user.id === data.id) {
+        console.log('match');
+        this.props.me.matches.push(user);
+        console.log('matches', this.props.me.matches);
+        return this.props.me.matches;
+      }
+    });
+    return <Matches me={this.props.me} />;
   }
   onSwipeLeft(data) {
     console.log('I was swiped left.');
   }
-  onSwipeRight() {
-    const me = this.props.me;
-    const userToUpdate = this.props.users.filter(user => {
-      user.id === me.id;
-    });
-    console.log('meId', me.id, 'userToUp', userToUpdate);
-  }
   renderCards() {
     console.log('props in Cards', this.props);
     const data = this.props.users;
-    const me = this.props.me;
-    console.log('data in Cards', data);
     return this.props.users.map(d => {
       const btns = {
         display: 'flex',
-        justifyContent: 'space-between',
-        color: 'teal'
+        justifyContent: 'space-between'
       };
       const body = {
         fontFamily: 'Roboto'
       };
       const cardStyle = {
-        backgroundColor: '#lightgray',
-        padding: '10px',
-        width: '600px',
-        // height: '320px',
-        position: 'absolute',
-        // top: '20%',
-        left: '10%',
-        right: '10%',
-        borderRadius: '5%',
-        border: '2px solid teal',
-        height: '500px',
-        fontFamily: 'Roboto',
-        alignItems: 'center',
-        justifyContent: 'space-between'
+        overflow: 'auto',
+        color: 'red',
+        display: 'flex',
+        flexDirection: 'column',
+        transform: 'translateY(-35px)',
+        color: 'black',
+        boxShadow: '0 2px 10px 0 rgba(117,117,117,0.77)'
       };
+
       const cardImage = {
         display: 'flex',
         borderTopLeft: '10px',
@@ -58,58 +51,30 @@ export default class Example extends Component {
         justifyContent: 'center',
         alignItems: 'center'
       };
-      const responsive = {
-        superLargeDesktop: {
-          // the naming can be any, depends on you.
-          breakpoint: { max: 4000, min: 3000 },
-          items: 5
-        },
-        desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 3
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 2
-        },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1
-        }
+
+      const cardText = {
+        fontSize: '16px',
+        fontWeight: '400',
+        color: '#8E9AA',
+        width: '100%',
+        minWidth: '110px'
       };
       return (
         <Card
-          responsive={responsive}
           key={d.id}
           style={cardStyle}
-          onSwipe={this.onSwipe.bind(this)}
           onSwipeLeft={this.onSwipeLeft.bind(this)}
           onSwipeRight={this.onSwipeRight.bind(this)}
-          // data={d}
+          data={d}
         >
           {d.name}
-          <img style={cardImage} src={d.img} alt="" />
-          <div style={btns}>
-            <button
-              type="button"
-              onClick={() => console.log('onClick')}
-              className="btn-floating waves-effect waves-light orange"
-            >
-              <i className="material-icons">remove</i>
-            </button>
-            <button
-              type="button"
-              onClick={() => this.onSwipeRight(d.id)}
-              className="btn-floating waves-effect waves-light orange"
-            >
-              <i className="material-icons">add</i>
-            </button>
-          </div>
+          <img className="Card__user-img" src={d.img} alt="" />
+          <div style={btns}></div>
           <div>
-            <p>
-              {d.climbingStyles} | {d.preferredGrades}
+            <p className="Card__name">
+              {d.climbingStyles} | {d.preferredGrades} | {d.gear}
             </p>
-            <p>{d.bio}</p>
+            <p className="Card__bio">{d.bio}</p>
           </div>
         </Card>
       );
