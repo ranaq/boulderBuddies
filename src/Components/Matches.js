@@ -11,6 +11,10 @@ export default class Matches extends Component {
   onSwipeLeft(data) {
     console.log('I was swiped left.');
   }
+  onDoubleTap(data) {
+    console.log('open msg app!');
+  }
+
   renderMatches() {
     console.log('props in matches', this.props.me.matches);
     const data = this.props.me.matches;
@@ -25,7 +29,6 @@ export default class Matches extends Component {
         };
         const cardStyle = {
           overflow: 'auto',
-          color: 'red',
           display: 'flex',
           flexDirection: 'column',
           transform: 'translateY(-35px)',
@@ -54,9 +57,11 @@ export default class Matches extends Component {
         return (
           <Card
             key={d.id}
+            isSwipeEnabled={false}
             style={cardStyle}
             onSwipeLeft={this.onSwipeLeft.bind(this)}
             onSwipeRight={this.onSwipeRight.bind(this)}
+            onDoubleTap={this.onDoubleTap.bind(this)}
             data={d}
           >
             {d.name}
@@ -73,6 +78,7 @@ export default class Matches extends Component {
       })
     ) : (
       <Card
+        isSwipeEnabled="false"
         style={{
           overflow: 'auto',
 

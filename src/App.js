@@ -24,10 +24,10 @@ export class App extends Component {
         zipCode: 12561,
         phoneNumber: '3472441139',
         bio: "I don't care how hard you climb as long as you bring snacks",
-        img: 'trad_dad.jpeg',
+        img: 'c2.jpeg',
         gear: 'rack',
         matches: [],
-        coords: {}
+        coords: { latitude: '', longitude: '' }
       },
       {
         id: 2,
@@ -40,7 +40,7 @@ export class App extends Component {
         zipCode: 12525,
         phoneNumber: '1234567890',
         bio: 'Looking for someone to project hard shi*t with!',
-        img: 'guy1.jpeg',
+        img: 'c3.jpeg',
         gear: 'rope',
         matches: []
       },
@@ -55,7 +55,7 @@ export class App extends Component {
         zipCode: 12525,
         phoneNumber: '1234567890',
         bio: 'What are your favorite sport climbs in the gunks?',
-        img: 'guy2.jpeg',
+        img: 'c4.jpeg',
         gear: 'brought the stoke!!!',
         matches: []
       },
@@ -69,9 +69,9 @@ export class App extends Component {
         preferredGrades: ['5.6'],
         zipCode: 12572,
         phoneNumber: '1234567890',
-        bio: 'What are your favorite sport climbs in the gunks?',
+        bio: 'Training for el cap',
         img: 'guy3.png',
-        gear: '80m rope',
+        gear: '90m rope',
         matches: []
       },
       {
@@ -84,9 +84,9 @@ export class App extends Component {
         preferredGrades: ['5.6'],
         zipCode: 12572,
         phoneNumber: '1234567890',
-        bio: 'What are your favorite sport climbs in the gunks?',
-        img: 'girl3.png',
-        gear: '80m rope',
+        bio: 'Looking for someone to teach me how to lead trad',
+        img: 'c4.jpeg',
+        gear: 'none',
         matches: []
       },
       {
@@ -99,7 +99,7 @@ export class App extends Component {
         preferredGrades: ['5.6'],
         zipCode: 12572,
         phoneNumber: '1234567890',
-        bio: 'Hoping to learn how to lead. Safe belayer',
+        bio: 'Mainly a boulderer',
         img: 'indoorWallClimber.png',
         gear: 'triple rack',
         matches: []
@@ -129,9 +129,9 @@ export class App extends Component {
         preferredGrades: ['5.6'],
         zipCode: 12572,
         phoneNumber: '1234567890',
-        bio: 'Hoping to learn how to lead. Safe belayer',
+        bio: 'Anyone want to go sport rappelling with me?',
         img: 'girl2.jpeg',
-        gear: 'triple rack',
+        gear: 'toprope gear',
         matches: []
       }
     ],
@@ -161,12 +161,11 @@ export class App extends Component {
             <li>
               <NavLink to="/profile">Profile</NavLink>
             </li>
+
             <li>
               <NavLink to="/matches">Matches</NavLink>
             </li>
-            <li>
-              <NavLink to="/home">Home1</NavLink>
-            </li>
+
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -178,8 +177,15 @@ export class App extends Component {
               return <Matches me={this.state.me} />;
             }}
           />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/home" component={Home} />
+          <Route
+            exact
+            path="/profile"
+            render={() => {
+              return <Profile me={this.state.me} />;
+            }}
+          />
+          {/* <Route exact path="/profile" component={Profile} /> */}
+          {/* <Route exact path="/home" component={Home} /> */}
 
           <Route
             exact

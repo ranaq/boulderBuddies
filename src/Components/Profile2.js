@@ -4,11 +4,14 @@ import Geo from './Geo';
 
 class FindMe extends React.Component {
   render() {
+    <Geo {...this.props} />;
     return (
       <div>
-        <h1>my profile:</h1>
-        <p>{this.props.coords && this.props.coords.latitude}</p>
-        <Geo {...this.props} />
+        <h3>Your location:</h3>
+        <p>
+          {this.props.coords && this.props.coords.latitude},
+          {this.props.coords && this.props.coords.longitude}
+        </p>
       </div>
     );
   }

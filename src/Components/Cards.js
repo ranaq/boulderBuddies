@@ -5,6 +5,12 @@ import 'materialize-css/dist/css/materialize.css';
 import './Cards.css';
 import Matches from './Matches';
 
+class MyEndCard extends Component {
+  render() {
+    return <div className="Card__bio">No more climbers near you.</div>;
+  }
+}
+
 export default class Cards extends Component {
   onSwipeRight(data) {
     this.props.users.forEach(user => {
@@ -19,6 +25,9 @@ export default class Cards extends Component {
   }
   onSwipeLeft(data) {
     console.log('I was swiped left.');
+  }
+  getEndCard() {
+    return <MyEndCard />;
   }
   renderCards() {
     console.log('props in Cards', this.props);
@@ -72,9 +81,14 @@ export default class Cards extends Component {
           <div style={btns}></div>
           <div>
             <p className="Card__name">
-              {d.climbingStyles} | {d.preferredGrades} | {d.gear}
+              {d.climbingStyles} | {d.preferredGrades}
             </p>
-            <p className="Card__bio">{d.bio}</p>
+
+            <p className="Card__bio">
+              {/* I have a: {d.gear} */}
+              {/* <hr /> */}
+              {d.bio}
+            </p>
           </div>
         </Card>
       );
@@ -84,7 +98,9 @@ export default class Cards extends Component {
   render() {
     return (
       <div>
-        <CardWrapper>{this.renderCards()}</CardWrapper>
+        <CardWrapper addEndCard={this.getEndCard.bind(this)}>
+          {this.renderCards()}
+        </CardWrapper>
       </div>
     );
   }

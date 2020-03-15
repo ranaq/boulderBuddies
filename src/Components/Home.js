@@ -3,10 +3,9 @@ import 'jquery';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
 import '../App.css';
-import { Container, Dropdown, Button, NavItem } from 'react-materialize';
+
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Example from '../Components/Cards';
 
 const responsive = {
   superLargeDesktop: {
