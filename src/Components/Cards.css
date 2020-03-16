@@ -15,3 +15,10 @@
   font-size: 1rem;
   color: #757575;
 }
+.cards_container {
+  background-color: rgb(238, 245, 245);
+  opacity: 100%;
+}
+span {
+  background-color: rgb(238, 245, 245);
+}

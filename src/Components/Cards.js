@@ -7,7 +7,7 @@ import Matches from './Matches';
 
 class MyEndCard extends Component {
   render() {
-    return <div className="Card__bio">No more climbers near you.</div>;
+    return <div>No more climbers near you.</div>;
   }
 }
 
@@ -26,8 +26,46 @@ export default class Cards extends Component {
   onSwipeLeft(data) {
     console.log('I was swiped left.');
   }
+  onDoubleTap(data) {
+    const cardStyle = {
+      overflow: 'auto',
+      backgroundColor: 'white',
+      display: 'flex',
+      flexDirection: 'column',
+      transform: 'translateY(-35px)',
+      color: 'black',
+      boxShadow: '0 2px 10px 0 rgba(117,117,117,0.77)'
+    };
+    console.log('I was doubletapped.');
+    return (
+      <Card
+        key={data.id}
+        style={cardStyle}
+        onSwipeLeft={this.onSwipeLeft.bind(this)}
+        onSwipeRight={this.onSwipeRight.bind(this)}
+        onDoubleTap={this.onDoubleTap.bind(this)}
+      >
+        <img className="Card__user-img" src={data.gear} alt="" />
+        <div Message me></div>
+      </Card>
+    );
+  }
+
   getEndCard() {
-    return <MyEndCard />;
+    return (
+      <MyEndCard
+        style={{
+          overflow: 'auto',
+
+          display: 'flex',
+          flexDirection: 'column',
+          transform: 'translateY(-35px)',
+          color: 'black',
+          boxShadow: '0 2px 10px 0 rgba(117,117,117,0.77)',
+          alignItems: 'center'
+        }}
+      />
+    );
   }
   renderCards() {
     console.log('props in Cards', this.props);
@@ -42,7 +80,7 @@ export default class Cards extends Component {
       };
       const cardStyle = {
         overflow: 'auto',
-        color: 'red',
+        backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'column',
         transform: 'translateY(-35px)',
@@ -74,6 +112,7 @@ export default class Cards extends Component {
           style={cardStyle}
           onSwipeLeft={this.onSwipeLeft.bind(this)}
           onSwipeRight={this.onSwipeRight.bind(this)}
+          onDoubleTap={this.onDoubleTap.bind(this)}
           data={d}
         >
           {d.name}
@@ -84,11 +123,7 @@ export default class Cards extends Component {
               {d.climbingStyles} | {d.preferredGrades}
             </p>
 
-            <p className="Card__bio">
-              {/* I have a: {d.gear} */}
-              {/* <hr /> */}
-              {d.bio}
-            </p>
+            <p className="Card__bio">{d.bio}</p>
           </div>
         </Card>
       );

@@ -37,27 +37,12 @@ class Profile extends Component {
     };
   };
 
-  // handleChange(evt) {
-  //   this.setState({
-  //     [evt.target.name]: evt.target.value
-  //   });
-  // }
-
   renderUpdateMessage = () => {
     return this.state.updated ? (
       <div className="update-text">Updated</div>
     ) : null;
   };
 
-  // addToCartNotification(productName, quantity) {
-  //   const toastHTML = `
-  //     <div>
-  //      in your cart
-  //     </div>`;
-  //   Materialize.toast({
-  //     html: toastHTML
-  //   });
-  // }
   render() {
     const cardStyle = {
       overflow: 'auto',
@@ -65,13 +50,15 @@ class Profile extends Component {
       flexDirection: 'column',
       transform: 'translateY(-35px)',
       color: 'black',
-      boxShadow: '0 2px 10px 0 rgba(117,117,117,0.77)'
+      boxShadow: '0 2px 10px 0 rgba(117,117,117,0.77)',
+      backgroundColor: 'rgb(238, 245, 245)',
+      opacity: '100%'
     };
 
     <Geo {...this.props} />;
     return (
       <div style={{ color: 'teal' }}>
-        <div>
+        <div style={{ backgroundColor: 'rgb(238, 245, 245)' }}>
           <div>
             <form style={{ padding: '20px' }}>
               <div>
@@ -81,8 +68,6 @@ class Profile extends Component {
                     className="input-form"
                     style={{ padding: '2px 2px' }}
                     type="text"
-                    name="profile-name"
-                    id="profile-name"
                     value={this.state.email}
                     placeholder="Email"
                     onChange={evt => this.setState({ email: evt.target.value })}
@@ -94,11 +79,9 @@ class Profile extends Component {
                     className="input-form"
                     style={{ padding: '2px 2px' }}
                     type="text"
-                    name="profile-name"
-                    // id="profile-bio"
                     value={this.state.gear}
                     placeholder="Gear"
-                    onChange={evt => this.setState({ name: evt.target.value })}
+                    onChange={evt => this.setState({ gear: evt.target.value })}
                   ></input>
                 </div>
                 <div>
@@ -107,11 +90,11 @@ class Profile extends Component {
                     className="input-form"
                     style={{ padding: '2px 2px' }}
                     type="text"
-                    name="profile-name"
-                    id="profile-name"
                     value={this.state.climbingStyles}
                     placeholder="Climbing styles"
-                    onChange={evt => this.setState({ name: evt.target.value })}
+                    onChange={evt =>
+                      this.setState({ climbingStyles: evt.target.value })
+                    }
                   ></input>
                 </div>
                 <div>
@@ -120,23 +103,22 @@ class Profile extends Component {
                     style={{ padding: '2px 2px' }}
                     className="input-form"
                     type="text"
-                    name="profile-bio"
-                    id="profile-bio"
                     value={this.state.preferredGrades}
                     placeholder=" "
-                    onChange={evt => this.setState({ name: evt.target.value })}
+                    onChange={evt =>
+                      this.setState({ preferredGrades: evt.target.value })
+                    }
                   ></input>
                 </div>
                 <div>
                   Bio
                   <textarea
-                    className="Profile__Form__user-inputs__bio"
+                    className="input-form"
                     type="text"
                     name="profile-bio"
-                    // id="profile-bio"
                     value={this.state.bio}
                     placeholder="Write a short bio!"
-                    onChange={evt => this.setState({ name: evt.target.value })}
+                    onChange={evt => this.setState({ bio: evt.target.value })}
                   ></textarea>
                 </div>
               </div>

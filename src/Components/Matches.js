@@ -33,7 +33,9 @@ export default class Matches extends Component {
           flexDirection: 'column',
           transform: 'translateY(-35px)',
           color: 'black',
-          boxShadow: '0 2px 10px 0 rgba(117,117,117,0.77)'
+          boxShadow: '0 2px 10px 0 rgba(117,117,117,0.77)',
+          backgroundColor: 'rgb(238, 245, 245)',
+          opacity: '100%'
         };
 
         const cardImage = {
