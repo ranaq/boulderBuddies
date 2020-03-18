@@ -57,7 +57,7 @@ let Loc = props => {
     props.me.coords.longitude = props.coords.longitude;
     console.log('me after coords', props.me.coords);
   }
-  if (props.coords) {
+  if (props.coords) { 
     for (let i = 0; i < users.length; i++) {
       let user = users[i];
       console.log('userNearMe', user);

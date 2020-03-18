@@ -79,7 +79,7 @@ export default class Cards extends Component {
         fontFamily: 'Roboto'
       };
       const cardStyle = {
-        overflow: 'auto',
+        // overflow: 'auto',
         backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'column',
@@ -89,7 +89,7 @@ export default class Cards extends Component {
       };
 
       const cardImage = {
-        display: 'flex',
+        // display: 'flex',
         borderTopLeft: '10px',
         width: '85%',
         height: '30%',
@@ -131,6 +131,7 @@ export default class Cards extends Component {
   }
 
   render() {
+    console.log(this.renderCards);
     return (
       <div>
         <CardWrapper addEndCard={this.getEndCard.bind(this)}>
