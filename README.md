@@ -1,4 +1,4 @@
-# boulder Buddies
+# Boulder Buddies
 
 ## About this app
 
